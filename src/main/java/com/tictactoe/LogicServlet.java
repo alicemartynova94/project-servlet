@@ -34,12 +34,14 @@ public class LogicServlet extends javax.servlet.http.HttpServlet {
             if (checkWin(resp, currentSession, field)) {
                 return;
             }
+        } else {
+            currentSession.setAttribute("draw", true);
         }
 
         List<Sign> data = field.getFieldData();
         currentSession.setAttribute("data", data);
-        currentSession.setAttribute("field", field);
         resp.sendRedirect("/index.jsp");
+        return;
     }
 
     private int getSelectedIndex(HttpServletRequest request) {
